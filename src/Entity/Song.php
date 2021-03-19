@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity(repositoryClass=SingerRepository::class)
- * @ORM\Table(name="singers")
+ * @ORM\Table(name="songs")
  */
 class Song
 {
@@ -52,6 +52,11 @@ class Song
      * @ORM\ManyToOne(targetEntity=Album::class, inversedBy="songs")
      */
     private $album;
+
+    public function getId(): int
+    {
+        return $this->id;
+    }
 
     public function getTitle(): ?string
     {

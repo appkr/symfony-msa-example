@@ -2,27 +2,24 @@
 
 namespace App\Service\Dto;
 
-use App\Entity\Song;
 use DateTime;
 
-class AlbumDto
+class SongDto
 {
     private $id;
     private $title;
-    private $published;
+    private $playTime;
     private $createdAt;
     private $updatedAt;
     private $createdBy;
     private $updatedBy;
-    private $singer;
-    private $songs;
 
     public function getId(): int
     {
         return $this->id;
     }
 
-    public function setId(?int $id)
+    public function setId(int $id)
     {
         $this->id = $id;
     }
@@ -32,19 +29,19 @@ class AlbumDto
         return $this->title;
     }
 
-    public function setTitle(string $title)
+    public function setTitle(?string $title)
     {
         $this->title = $title;
     }
 
-    public function getPublished(): DateTime
+    public function getPlayTime(): string
     {
-        return $this->published;
+        return $this->playTime;
     }
 
-    public function setPublished(DateTime $published)
+    public function setPlayTime(string $playTime)
     {
-        $this->published = $published;
+        $this->playTime = $playTime;
     }
 
     public function getCreatedAt(): DateTime
@@ -85,36 +82,5 @@ class AlbumDto
     public function setUpdatedBy(?string $updatedBy)
     {
         $this->updatedBy = $updatedBy;
-    }
-
-    public function getSinger(): ?SingerDto
-    {
-        return $this->singer;
-    }
-
-    public function setSinger(?SingerDto $singer)
-    {
-        $this->singer = $singer;
-    }
-
-    /**
-     * @return array|SongDto[]
-     */
-    public function getSongs(): ?array
-    {
-        return $this->songs;
-    }
-
-    /**
-     * @param array|Song[] $songs
-     */
-    public function setSongs(?array $songs)
-    {
-        $this->songs = $songs;
-    }
-
-    public function jsonSerialize()
-    {
-        return get_object_vars($this);
     }
 }

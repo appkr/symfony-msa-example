@@ -22,10 +22,11 @@ class SingerService
 
     public function createSinger(SingerDto $dto): SingerDto
     {
-        return $this->em->transactional(function (EntityManagerInterface $em) use ($dto) {
-            $entity = $this->mapper->toEntity($dto);
-            $this->em->persist($entity);
-            $this->em->flush();
+        $self = $this;
+        return $this->em->transactional(function (EntityManagerInterface $em) use ($self, $dto) {
+            $entity = $self->mapper->toEntity($dto);
+            $em->persist($entity);
+            $em->flush();
 
             return $this->mapper->toDto($entity);
         });

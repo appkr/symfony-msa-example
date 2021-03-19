@@ -10,6 +10,7 @@ use \App\Entity\Singer;
 
 /**
  * @ORM\Entity(repositoryClass=AlbumRepository::class)
+ * @ORM\Table(name="albums")
  */
 class Album
 {

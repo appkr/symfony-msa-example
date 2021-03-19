@@ -12,8 +12,12 @@ class SingerMapper
         return Singer::of($dto->getName());
     }
 
-    public function toDto(Singer $entity): SingerDto
+    public function toDto(?Singer $entity): ?SingerDto
     {
+        if ($entity == null) {
+            return null;
+        }
+
         $dto = new SingerDto();
         $dto->setId($entity->getId());
         $dto->setName($entity->getName());
