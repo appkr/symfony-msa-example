@@ -4,6 +4,8 @@ namespace App\Entity;
 
 use App\Repository\SingerRepository;
 use DateTime;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -44,6 +46,11 @@ class Singer
      */
     private $updatedBy;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Album::class, mappedBy="singer", orphanRemoval=true)
+     */
+    private $albums;
+
     public function __construct(?int $id, string $name, ?DateTime $createdAt, ?DateTime $updatedAt,
                                 ?string $createdBy, ?string $updatedBy) {
         $this->id = $id;
@@ -52,6 +59,7 @@ class Singer
         $this->updatedAt = $updatedAt;
         $this->createdBy = $createdBy;
         $this->updatedBy = $updatedBy;
+        $this->albums = new ArrayCollection();
     }
 
     public static function of($name) {
@@ -113,5 +121,35 @@ class Singer
     public function setUpdatedBy($updatedBy)
     {
         $this->updatedBy = $updatedBy;
+    }
+
+    /**
+     * @return Collection|Album[]
+     */
+    public function getAlbums(): Collection
+    {
+        return $this->albums;
+    }
+
+    public function addAlbum(Album $album): self
+    {
+        if (!$this->albums->contains($album)) {
+            $this->albums[] = $album;
+            $album->setSinger($this);
+        }
+
+        return $this;
+    }
+
+    public function removeAlbum(Album $album): self
+    {
+        if ($this->albums->removeElement($album)) {
+            // set the owning side to null (unless already changed)
+            if ($album->getSinger() === $this) {
+                $album->setSinger(null);
+            }
+        }
+
+        return $this;
     }
 }
