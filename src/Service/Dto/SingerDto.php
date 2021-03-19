@@ -33,22 +33,22 @@ class SingerDto implements \JsonSerializable
         $this->name = $name;
     }
 
-    public function getCreatedAt(): DateTime
+    public function getCreatedAt(): string
     {
         return $this->createdAt;
     }
 
-    public function setCreatedAt(DateTime $createdAt)
+    public function setCreatedAt(string $createdAt)
     {
         $this->createdAt = $createdAt;
     }
 
-    public function getUpdatedAt(): DateTime
+    public function getUpdatedAt(): string
     {
         return $this->updatedAt;
     }
 
-    public function setUpdatedAt(DateTime $updatedAt)
+    public function setUpdatedAt(string $updatedAt)
     {
         $this->updatedAt = $updatedAt;
     }

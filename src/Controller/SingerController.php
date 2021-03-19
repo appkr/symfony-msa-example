@@ -35,13 +35,13 @@ class SingerController extends BaseController
      */
     public function listSingers(): Response
     {
-        $data = array_map(function (SingerDto $dto) {
-            $temp = $dto->jsonSerialize();
-            $temp['createdAt'] = $dto->getCreatedAt()->format(DateTime::ISO8601);
-            $temp['updatedAt'] = $dto->getUpdatedAt()->format(DateTime::ISO8601);
-            return $temp;
-        }, $this->service->listSingers());
+//        $data = array_map(function (SingerDto $dto) {
+//            $temp = $dto->jsonSerialize();
+//            $temp['createdAt'] = $dto->getCreatedAt()->format(DateTime::ISO8601);
+//            $temp['updatedAt'] = $dto->getUpdatedAt()->format(DateTime::ISO8601);
+//            return $temp;
+//        }, $this->service->listSingers());
 
-        return new JsonResponse(['data' => $data]);
+        return new JsonResponse(['data' => $this->service->listSingers()]);
     }
 }

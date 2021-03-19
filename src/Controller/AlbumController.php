@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Service\AlbumService;
 use App\Service\Dto\AlbumDto;
+use DateTime;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -34,14 +35,14 @@ class AlbumController extends BaseController
      */
     public function index(): Response
     {
-        $data = array_map(function (AlbumDto $dto) {
-            $temp = $dto->jsonSerialize();
-            $temp['createdAt'] = $dto->getCreatedAt()->format(DateTime::ISO8601);
-            $temp['updatedAt'] = $dto->getUpdatedAt()->format(DateTime::ISO8601);
-            return $temp;
-        }, $this->service->listArticles());
+//        $data = array_map(function (AlbumDto $dto) {
+//            $temp = $dto->jsonSerialize();
+//            $temp['createdAt'] = $dto->getCreatedAt()->format(DateTime::ISO8601);
+//            $temp['updatedAt'] = $dto->getUpdatedAt()->format(DateTime::ISO8601);
+//            return $temp;
+//        }, $this->service->listArticles());
 
-        return new JsonResponse(['data' => $data]);
+        return new JsonResponse(['data' => $this->service->listArticles()]);
     }
 
     /**

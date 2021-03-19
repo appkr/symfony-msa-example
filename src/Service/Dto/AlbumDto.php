@@ -5,7 +5,7 @@ namespace App\Service\Dto;
 use App\Entity\Song;
 use DateTime;
 
-class AlbumDto
+class AlbumDto implements \JsonSerializable
 {
     private $id;
     private $title;
@@ -37,32 +37,32 @@ class AlbumDto
         $this->title = $title;
     }
 
-    public function getPublished(): DateTime
+    public function getPublished(): string
     {
         return $this->published;
     }
 
-    public function setPublished(DateTime $published)
+    public function setPublished(string $published)
     {
         $this->published = $published;
     }
 
-    public function getCreatedAt(): DateTime
+    public function getCreatedAt(): string
     {
         return $this->createdAt;
     }
 
-    public function setCreatedAt(DateTime $createdAt)
+    public function setCreatedAt(string $createdAt)
     {
         $this->createdAt = $createdAt;
     }
 
-    public function getUpdatedAt(): DateTime
+    public function getUpdatedAt(): string
     {
         return $this->updatedAt;
     }
 
-    public function setUpdatedAt(DateTime $updatedAt)
+    public function setUpdatedAt(string $updatedAt)
     {
         $this->updatedAt = $updatedAt;
     }

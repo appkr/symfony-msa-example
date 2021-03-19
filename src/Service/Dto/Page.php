@@ -2,7 +2,7 @@
 
 namespace App\Service\Dto;
 
-class Page
+class Page implements \JsonSerializable
 {
     private $size;
     private $totalElements;
