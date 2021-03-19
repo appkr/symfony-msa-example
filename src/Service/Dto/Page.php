@@ -16,4 +16,9 @@ class Page
         $this->totalPages = $totalPages;
         $this->number = $number;
     }
+
+    public function jsonSerialize()
+    {
+        return get_object_vars($this);
+    }
 }
